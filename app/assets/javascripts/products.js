@@ -47,7 +47,6 @@ const color_selected = document.getElementById("color_option");
 const size_selected = document.getElementById("size_option");
 
 function generate_variant() {
-  console.log(color_selected.value)
   if (color_selected.value in variants) {
     console.log(!variants[color_selected.value].includes(size_selected.value));
     if(!variants[color_selected.value].includes(size_selected.value)) {
@@ -60,9 +59,9 @@ function generate_variant() {
   const variant_row = document.createElement("div");
   variant_row.classList.add("row-item");
   const color = document.createElement("p");
-  color.innerHTML = color_selected[color_selected.value - 1].text;
+  color.innerHTML = color_selected[color_selected.selectedIndex].text;
   const size = document.createElement("p");
-  size.innerHTML = size_selected[size_selected.value - 1].text;
+  size.innerHTML = size_selected[size_selected.selectedIndex].text;
   variant_row.appendChild(color);
   variant_row.appendChild(size);
   const variant_list = document.getElementById("variants_list");

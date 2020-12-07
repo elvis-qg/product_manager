@@ -49,11 +49,11 @@ class ProductsController < ApplicationController
     end
     
     if params["type"] == "2"
-      if params["variants"].key?("1")
-        product = Product.create!(name: params["name"], brand: params["brand"])
+      if params["variants"].key?("5")
+        product = Product.create!(name: params["name"], brand: params["brand"], type_id: params["type"])
         params["variants"].each do |color, sizes|
           sizes.each do |size|
-            ProductVariant.create!(product_id: product.id, color_id: color, size_id: size)
+            ProductVariant.create!(product_id: product.id, color_id: color.to_i, size_id: size.to_i)
           end
         end
         respond_to do |format|
