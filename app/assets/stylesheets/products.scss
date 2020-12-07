@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.variants-containr {
+.variants-container {
   display: flex;
   flex-direction: column; 
 }
@@ -10,4 +10,18 @@
 .variant-item {
   height: 60px;
   display: flex;
+}
+
+.variant_fields_wrapper {
+  display: flex;
+  padding-bottom: 15px;
+}
+
+.variant_field {
+  padding-right: 20px;
+}
+
+.add_button {
+  margin-top: 15px;
+  height: 25px;
 }

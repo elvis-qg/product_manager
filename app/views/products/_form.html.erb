@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <h3>General data:</h3>
+
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>  
@@ -26,15 +28,22 @@
     <%= collection_select(:type, :type_id, @types, :id, :name, {:prompt => "Select a type", :selected => "", :disabled => ""}, {:id => "type_option"}) =%>
   </div>
 
-  <div class="field">
-    <%= form.label :color_id %>
-    <%= collection_select(:color, :color_id, [], :id, :name, {:prompt => "Select a color" }, {:id => "color_option"}) =%>
-  </div>
+  <h3>Add Variants:</h3>
 
-  <div class="field">
-    <%= form.label :size_id %>
-    <%= collection_select(:size, :size_id, [], :id, :name, {:prompt => "Select a size"}, {:id => "size_option"}) =%>
+  <div class="variant_fields_wrapper">
+    <div class="variant_field">
+      <%= form.label :color_id %>
+      <%= collection_select(:color, :color_id, [], :id, :name, {:prompt => "Select a color" }, {:id => "color_option"}) =%>
+    </div>
+
+    <div class="variant_field field">
+      <%= form.label :size_id %>
+      <%= collection_select(:size, :size_id, [], :id, :name, {:prompt => "Select a size"}, {:id => "size_option"}) =%>
+    </div>
+ 
+    <button type="button" class="add_button">Add variant</button>
   </div>
+  
 
   <%= javascript_include_tag :products =%>
 
