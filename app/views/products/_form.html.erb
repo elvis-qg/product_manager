@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name %>  
   </div>
 
   <div class="field">
@@ -23,8 +23,20 @@
 
   <div class="field">
     <%= form.label :type_id %>
-    <%= form.text_field :type_id %>
+    <%= collection_select(:type, :type_id, @types, :id, :name, {:prompt => "Select a type", :selected => "", :disabled => ""}, {:id => "type_option"}) =%>
   </div>
+
+  <div class="field">
+    <%= form.label :color_id %>
+    <%= collection_select(:color, :color_id, [], :id, :name, {:prompt => "Select a color" }, {:id => "color_option"}) =%>
+  </div>
+
+  <div class="field">
+    <%= form.label :size_id %>
+    <%= collection_select(:size, :size_id, [], :id, :name, {:prompt => "Select a size"}, {:id => "size_option"}) =%>
+  </div>
+
+  <%= javascript_include_tag :products =%>
 
   <div class="actions">
     <%= form.submit %>

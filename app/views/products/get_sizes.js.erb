@@ -1,0 +1,5 @@
+$('.size_option').empty();
+$('.size_option').append( $('<option>Select a Size</option>'));
+<% @sizes.each do |size| %>
+  $('.size_option').append($('<option value="<%= size.id %>"><%= size.name %></option>'));
+<% end %>

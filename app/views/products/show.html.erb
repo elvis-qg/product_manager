@@ -12,8 +12,22 @@
 
 <p>
   <strong>Type:</strong>
-  <%= @product.type_id %>
+  <%= @product.type.name %>
 </p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
+<div class="variants-container">
+  <div class="row-item">
+      <p>Color</p>
+      <p>Size</p>
+    </div>
+  <% @product.product_variants.each do |variant| %>
+    <div class="row-item">
+      <p><%= variant.color.name =%></p>
+      <p><%= variant.size.name =%></p>
+    </div>
+  <% end %>
+</div>
+
+
+<%= link_to 'New Product', new_product_path() %> |
 <%= link_to 'Back', products_path %>
