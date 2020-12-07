@@ -43,9 +43,10 @@ add_variant_button.addEventListener("click", function() {
   generate_variant();
 });
 
+const color_selected = document.getElementById("color_option");
+const size_selected = document.getElementById("size_option");
+
 function generate_variant() {
-  const color_selected = document.getElementById("color_option");
-  const size_selected = document.getElementById("size_option");
   console.log(color_selected.value)
   if (color_selected.value in variants) {
     console.log(!variants[color_selected.value].includes(size_selected.value));
@@ -78,13 +79,18 @@ function send_data() {
   const product_name = document.getElementById("product_name").value;
   const product_brand = document.getElementById("product_brand").value;
   const product_type = document.getElementById("type_option").value;
+  const token = document.getElementsByName("authenticity_token")[0].value;
+  console.log(token);
   const data = {name: product_name, brand: product_brand, type: product_type, variants: variants}
-  console.log(data);
   fetch("/products", {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': token,
+      'X-Requested-With': 'XMLHttpRequest', 
+    },
+    body: JSON.stringify(data),
+    credentials: 'same-origin',
   });
 }
 
