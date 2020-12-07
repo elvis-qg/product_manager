@@ -48,7 +48,10 @@ function generate_variant() {
   const size_selected = document.getElementById("size_option");
   console.log(color_selected.value)
   if (color_selected.value in variants) {
-    variants[color_selected.value].push(size_selected.value);  
+    console.log(!variants[color_selected.value].includes(size_selected.value));
+    if(!variants[color_selected.value].includes(size_selected.value)) {
+      variants[color_selected.value].push(size_selected.value);
+    }
   }
   else {
     variants[color_selected.value] = [size_selected.value];
@@ -59,14 +62,29 @@ function generate_variant() {
   color.innerHTML = color_selected[color_selected.value - 1].text;
   const size = document.createElement("p");
   size.innerHTML = size_selected[size_selected.value - 1].text;
-  console.log(color);
   variant_row.appendChild(color);
   variant_row.appendChild(size);
   const variant_list = document.getElementById("variants_list");
   variant_list.appendChild(variant_row);
 }
 
+const submit_button = document.getElementById("send_button");
+submit_button.addEventListener("click", function() {
+  send_data();
+});
+
+
 function send_data() {
-  return false;
+  const product_name = document.getElementById("product_name").value;
+  const product_brand = document.getElementById("product_brand").value;
+  const product_type = document.getElementById("type_option").value;
+  const data = {name: product_name, brand: product_brand, type: product_type, variants: variants}
+  console.log(data);
+  fetch("/products", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
 }
 
