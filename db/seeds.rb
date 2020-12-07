@@ -10,7 +10,7 @@
 products_type = ["Hoodie", "Shoes"]
 colors_hoodie = ["Red", "Blue", "Yellow", "Green"]
 size_hoodie = ["S", "M", "L", "XL"]
-colors_shoes = ["Black", "Brown", "Blue", "White"]
+colors_shoes = ["Red", "Brown", "Blue", "White"]
 size_shoes = ["8", "9", "10", "11"]
 
 products_type.each do |type|
