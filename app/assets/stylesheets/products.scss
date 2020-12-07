@@ -7,9 +7,14 @@
   flex-direction: column; 
 }
 
-.variant-item {
-  height: 60px;
+.row-item {
+  height: 30px;
   display: flex;
+}
+
+.row-item p {
+  margin-right: 25px;
+  width: 40px;
 }
 
 .variant_fields_wrapper {
@@ -24,4 +29,8 @@
 .add_button {
   margin-top: 15px;
   height: 25px;
+}
+
+.generated_variants {
+  margin-bottom: 20px;
 }

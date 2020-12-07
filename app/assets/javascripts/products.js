@@ -8,6 +8,7 @@ type_option.addEventListener("change", async function() {
 async function get_colors(value) {
   const response = await fetch(`/products/get_colors?id=${value}`)
   const data = await response.json();
+  console.log(data);
   const color_options = document.getElementById('color_option');
   while(color_options.firstChild) {
     color_options.removeChild(color_options.firstChild);
@@ -15,7 +16,7 @@ async function get_colors(value) {
   for(let i = 0; i < data.length; i++ ) {
     option = document.createElement("option")
     option.innerHTML = data[i]["name"];
-    option.value = data[i]["color_id"]
+    option.value = data[i]["id"]
     color_options.appendChild(option);
   }
 }
@@ -30,9 +31,42 @@ async function get_sizes(value) {
   for(let i = 0; i < data.length; i++ ) {
     option = document.createElement("option")
     option.innerHTML = data[i]["name"];
-    option.value = data[i]["color_id"]
+    option.value = data[i]["id"]
     size_options.appendChild(option);
   }
 }
 
+const add_variant_button = document.getElementById("add_variant_button");
+var variants = {};
+
+add_variant_button.addEventListener("click", function() {
+  generate_variant();
+});
+
+function generate_variant() {
+  const color_selected = document.getElementById("color_option");
+  const size_selected = document.getElementById("size_option");
+  console.log(color_selected.value)
+  if (color_selected.value in variants) {
+    variants[color_selected.value].push(size_selected.value);  
+  }
+  else {
+    variants[color_selected.value] = [size_selected.value];
+  }
+  const variant_row = document.createElement("div");
+  variant_row.classList.add("row-item");
+  const color = document.createElement("p");
+  color.innerHTML = color_selected[color_selected.value - 1].text;
+  const size = document.createElement("p");
+  size.innerHTML = size_selected[size_selected.value - 1].text;
+  console.log(color);
+  variant_row.appendChild(color);
+  variant_row.appendChild(size);
+  const variant_list = document.getElementById("variants_list");
+  variant_list.appendChild(variant_row);
+}
+
+function send_data() {
+  return false;
+}
 

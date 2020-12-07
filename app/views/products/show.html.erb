@@ -17,9 +17,9 @@
 
 <div class="variants-container">
   <div class="row-item">
-      <p>Color</p>
-      <p>Size</p>
-    </div>
+    <p>Color</p>
+    <p>Size</p>
+  </div>
   <% @product.product_variants.each do |variant| %>
     <div class="row-item">
       <p><%= variant.color.name =%></p>
